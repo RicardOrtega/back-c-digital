@@ -1,13 +1,15 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { GiftCard } from "./gift-cards.entity";
+import { GiftCard } from "./entities/gift-cards.entity";
+import { GiftCardsController } from "./gift-cards.controller";
+import { GiftCardsService } from "./gift-cards.service";
 
 @Module({
     imports: [
         TypeOrmModule.forFeature([GiftCard]),
     ],
-    controllers: [],
-    providers: [],
-    exports: [],
+    controllers: [GiftCardsController],
+    providers: [GiftCardsService],
+    exports: [GiftCardsService],
 })
 export class GiftCardsModule {}

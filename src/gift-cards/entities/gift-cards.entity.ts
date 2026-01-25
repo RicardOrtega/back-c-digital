@@ -1,5 +1,5 @@
 import { Entity,PrimaryGeneratedColumn,Column,CreateDateColumn,UpdateDateColumn,ManyToOne,JoinColumn,Index } from "typeorm";
-import { Shop } from "../shops/shop.entity";
+import { Shop } from "../../shops/entities/shop.entity";
 
 @Entity('gift_cards')
 @Index(['shopid','isActive'])

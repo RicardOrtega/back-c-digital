@@ -4,8 +4,9 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService,ConfigModule } from '@nestjs/config';
 import { UserModule } from './users/user.module';
-import { Shop } from './shops/shop.entity';
+import { Shop } from './shops/entities/shop.entity';
 import { ShopModule } from './shops/shop.module';
+import { GiftCardsModule } from './gift-cards/gift-cards.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { ShopModule } from './shops/shop.module';
     }),
     UserModule,
     ShopModule,
+    GiftCardsModule
   ],
   controllers: [AppController],
   providers: [AppService],
