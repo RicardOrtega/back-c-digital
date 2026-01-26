@@ -1,5 +1,5 @@
 import {Entity,PrimaryGeneratedColumn,Column,CreateDateColumn,ManyToOne,JoinColumn,Index} from "typeorm";
-import { GiftCardCode } from "src/gift-cards-codes/entites/gift-card-codes.entity";
+import { GiftCardCode } from "src/gift-cards-codes/entities/gift-card-codes.entity";
 import {Shop} from "src/shops/entities/shop.entity";    
 
 @Entity('redemption_history')

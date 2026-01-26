@@ -9,7 +9,7 @@ import { ShopModule } from './shops/shop.module';
 import { GiftCardsModule } from './gift-cards/gift-cards.module';
 import { PurchasesModule } from './purchases/purchases.module';
 import { RedemptionHistoryModule } from './redemption-history/redemption-history.module';
-import { GiftCardCodesModule } from './gift-cards-codes/gift-card-codes-module';
+import { GiftCardCodesModule } from './gift-cards-codes/gift-card-codes.module';
 
 @Module({
   imports: [
