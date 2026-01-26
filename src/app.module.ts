@@ -28,7 +28,11 @@ import { GiftCardCodesModule } from './gift-cards-codes/gift-card-codes-module';
         database: config.get<string>('DB_NAME'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: true,
-        logging:true
+        logging:true,
+        //esta configuracion solo aplica para conectarse a aiven en desarrollo
+        ssl: {
+          rejectUnauthorized: false,
+        },
       }),
     }),
     UserModule,
