@@ -1,9 +1,10 @@
-import {Controller,Post,Body,Get,HttpCode,HttpStatus, ParseUUIDPipe, Param, Put} from '@nestjs/common';
+import {Controller,Post,Body,Get,HttpCode,HttpStatus, ParseUUIDPipe, Param, Put, UseGuards} from '@nestjs/common';
 import { GiftCardsService } from './gift-cards.service';
 import { GiftCardCatalogDto } from './dto/gift-card-catalog.dto';
 import { CreateGiftCardDto } from './dto/create-gift-card.dto';
 import { GiftCard } from './entities/gift-cards.entity';
 import { UpdateGiftCardDto } from './dto/update-gift-card.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 
 @Controller('gift-cards')
@@ -16,6 +17,7 @@ export class GiftCardsController {
         return this.giftCardsService.getGiftCardCatalog();
     }
 
+    @UseGuards(JwtAuthGuard)
     @Post('create')
     @HttpCode(HttpStatus.CREATED)
     async createCard(@Body()data: CreateGiftCardDto):Promise<GiftCard>{
@@ -40,6 +42,8 @@ export class GiftCardsController {
         return this.giftCardsService.findById(id);
     }
 
+
+    @UseGuards(JwtAuthGuard)
     @Put('update/:id')
     @HttpCode(HttpStatus.OK)
     async updateCard(@Param('id', ParseUUIDPipe) id: string, @Body() data: UpdateGiftCardDto): Promise<GiftCard> {
