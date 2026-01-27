@@ -1,4 +1,4 @@
-import {Controller,Post,Body,Get,HttpCode,HttpStatus, Param} from '@nestjs/common';
+import {Controller,Post,Body,Get,HttpCode,HttpStatus, Param, Put, ParseUUIDPipe} from '@nestjs/common';
 import { ShopService } from './shop.service';
 import { CreateShopDto } from './dto/create-shop.dto';
 import { UpdateShopDto } from './dto/update-shop.dto';
@@ -21,13 +21,13 @@ export class ShopController {
 
     @Get('detail/:id')
     @HttpCode(HttpStatus.OK)
-    async getShopById(@Param('id') id: string) {
+    async getShopById(@Param('id', ParseUUIDPipe) id: string) {
         return this.shopService.findById(id);
     }
 
-    @Post('update/:id')
+    @Put('update/:id')
     @HttpCode(HttpStatus.OK)
-    async updateShop(@Param('id') id: string, @Body() updateShopDto: UpdateShopDto) {
+    async updateShop(@Param('id', ParseUUIDPipe) id: string, @Body() updateShopDto: UpdateShopDto) {
         return this.shopService.update(id, updateShopDto);
     }
 

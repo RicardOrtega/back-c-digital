@@ -28,6 +28,7 @@ export class GiftCardsService {
             imageUrl: giftCard.imageUrl,
             price: giftCard.price,
             currency: giftCard.currency,
+            stock: giftCard.stock,
             shop: {
                 id: giftCard.shop.id,
                 name: giftCard.shop.name,
@@ -65,7 +66,7 @@ export class GiftCardsService {
 
 
     async findByShop(shopId: string): Promise<GiftCard[]> {
-        return this.giftCardRepository.find({ where: { shop: { id: shopId } }, relations: ['shop'], order: { createdAt: 'DESC' } });
+        return this.giftCardRepository.find({ where: { shopid: shopId }, relations: ['shop'], order: { createdAt: 'DESC' } });
     }
 
 
@@ -75,7 +76,7 @@ export class GiftCardsService {
         const updateData = { ...data };
         if (data.price !== undefined) {
 
-            updateData.price = data.price
+            updateData.price = data.price.toString();
         }
         Object.assign(card, updateData);
         return this.giftCardRepository.save(card);

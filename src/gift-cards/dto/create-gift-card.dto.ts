@@ -4,7 +4,7 @@ export class CreateGiftCardDto {
 
     @IsNotEmpty()
     @IsUUID()
-    shopId: string;
+    shopid: string;
 
     @IsNotEmpty()
     @IsString()
@@ -38,7 +38,7 @@ export class CreateGiftCardDto {
     @IsOptional()
     @IsNumber()
     @Min(0)
-    quantity?: number;
+    stock?: number;
 
 
 }

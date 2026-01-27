@@ -17,9 +17,9 @@ export class UpdateGiftCardDto {
     imageUrl?: string;
 
     @IsOptional()
-    @IsNumber({ maxDecimalPlaces: 2 })
+    @IsString()
     @Min(0)
-    price?: number;
+    price?: string;
 
     @IsOptional()
     @IsString()
@@ -34,7 +34,7 @@ export class UpdateGiftCardDto {
     @IsOptional()
     @IsNumber()
     @Min(0)
-    quantity?: number;
+    stock?: number;
 
 
 }
