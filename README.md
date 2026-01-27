@@ -1,99 +1,137 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# C-Digital Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+API REST para la gestión de tarjetas de regalo digitales, desarrollada con NestJS y TypeORM.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# Descripción
 
-## Description
+C-Digital es el backend de una plataforma para la venta, administración y canje de Gift Cards digitales. El sistema cubre todo el flujo del negocio, desde la autenticación de usuarios hasta la compra, generación y redención de tarjetas, con foco en seguridad, escalabilidad y mantenibilidad.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Está pensado como una base sólida para evolucionar hacia un producto en producción, manteniendo buenas prácticas de arquitectura y desarrollo backend.
 
-## Project setup
+# Funcionalidades principales
 
-```bash
-$ npm install
-```
+El sistema permite:
 
-## Compile and run the project
+Registro y autenticación de usuarios mediante JWT
 
-```bash
-# development
-$ npm run start
+Administración de comercios (tiendas)
 
-# watch mode
-$ npm run start:dev
+Catálogo de tarjetas de regalo
 
-# production mode
-$ npm run start:prod
-```
+Generación y gestión de códigos únicos de Gift Cards
 
-## Run tests
+Procesamiento de compras
 
-```bash
-# unit tests
-$ npm run test
+Registro y consulta del historial de canjes
 
-# e2e tests
-$ npm run test:e2e
+Protección contra abusos mediante rate limiting
 
-# test coverage
-$ npm run test:cov
-```
+Validación estricta de datos de entrada
 
-## Deployment
+# Stack tecnológico y decisiones
+Framework y lenguaje
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+Se utiliza NestJS (v10) como framework principal por su arquitectura modular, su sistema de inyección de dependencias y su excelente integración con TypeScript.
+El proyecto está desarrollado en TypeScript (v5), lo que permite detectar errores en etapas tempranas y facilita el mantenimiento a largo plazo.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+# Base de datos
 
-```bash
-$ npm install -g mau
-$ mau deploy
-```
+La persistencia se maneja con PostgreSQL, elegido por su confiabilidad, soporte transaccional y buen desempeño en escenarios reales de producción.
+El acceso a datos se realiza mediante TypeORM, trabajando directamente con entidades tipadas y aprovechando migrations para mantener el control del esquema.
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+# Seguridad
 
-## Resources
+La autenticación se implementa con JSON Web Tokens, permitiendo un enfoque stateless y escalable.
+Las contraseñas se almacenan utilizando bcrypt, asegurando un hash seguro con salt.
+Se incorporan medidas adicionales como Helmet para headers de seguridad y Throttler para limitar solicitudes y reducir el riesgo de ataques de fuerza bruta.
 
-Check out a few resources that may come in handy when working with NestJS:
+# Validación de datos
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Se utiliza class-validator junto a class-transformer para validar y transformar los datos de entrada de forma declarativa, manteniendo los controladores limpios y consistentes.
 
-## Support
+# Containerización
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+El proyecto incluye configuración completa con Docker y Docker Compose, lo que permite levantar la aplicación y la base de datos de forma consistente en cualquier entorno, sin dependencias externas adicionales.
 
-## Stay in touch
+# Estructura del proyecto
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+La organización del código sigue una estructura modular clara, alineada con las recomendaciones de NestJS:
 
-## License
+src/
+ ├── auth/                 autorización
+ ├── users/                Gestión de usuarios
+ ├── shops/                Gestión de tiendas
+ ├── gift-cards/           Catálogo de tarjetas
+ ├── gift-cards-codes/     Códigos de tarjetas
+ ├── purchases/            Procesamiento de compras
+ ├── redemption-history/   Historial de canjes
+ ├── app.module.ts         Módulo raíz
+ └── main.ts               Punto de entrada
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+ Cada módulo encapsula su lógica de dominio, controladores, servicios y entidades correspondientes.
+# Instalación y configuración
+
+El proyecto puede ejecutarse tanto de forma local como mediante Docker.
+
+# Ejecución local
+
+Clonar el repositorio
+
+Instalar dependencias con npm install
+
+Configurar las variables de entorno en un archivo .env
+
+Crear la base de datos en PostgreSQL
+
+Ejecutar la aplicación en modo desarrollo o producción
+
+# Ejecución con Docker
+
+La forma recomendada de ejecutar el proyecto es mediante Docker Compose, lo que levanta automáticamente:
+
+La aplicación NestJS
+
+Una instancia de PostgreSQL con volumen persistente
+
+La red interna entre servicios
+
+Healthchecks para asegurar el orden de arranque
+
+Esto permite tener un entorno reproducible y cercano a producción con un solo comando.
+
+
+# Testing
+
+El proyecto incluye configuración para:
+
+Tests unitarios
+
+Tests end-to-end
+
+Reportes de cobertura
+
+Esto permite validar la lógica crítica y asegurar la estabilidad del sistema ante cambios.
+
+# Endpoints principales
+
+La API expone endpoints REST organizados por dominio, incluyendo autenticación, gestión de tiendas, catálogo de tarjetas, compras y canjes.
+Todos los endpoints sensibles están protegidos mediante autenticación JWT.
+
+# Uso de Inteligencia Artificial
+
+Durante el desarrollo se utilizó asistencia de IA de forma puntual y controlada, principalmente para acelerar tareas de soporte y configuración.
+
+La IA se empleó en:
+
+Configuración inicial de Docker y Docker Compose
+
+Generación de un decorator personalizado para obtener el usuario autenticado
+
+Sugerencias para corrección de errores de importación y validaciones
+
+Todo el código generado con asistencia fue revisado manualmente, comprendido en su totalidad y probado en ejecución real antes de integrarse al proyecto.
+
+La lógica de negocio, el modelado de datos, las relaciones entre entidades, los servicios principales y las decisiones de arquitectura fueron desarrolladas 
+
+Apoyo en la estructuración, claridad y redacción del README y documentación general del proyecto, manteniendo siempre la coherencia técnica y el contenido definido por el equipo.
+
