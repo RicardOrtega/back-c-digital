@@ -7,8 +7,8 @@ import { JwtService } from "@nestjs/jwt";
 
 @Injectable()
 export class UserService {
-    constructor(@InjectRepository(User) private userRepository: Repository<User>) {}
-    private jwtService: JwtService;
+    constructor(@InjectRepository(User) private userRepository: Repository<User>, private readonly jwtService: JwtService) {}
+    
 
     private async hashPassword(password: string): Promise<string> {
         const saltRounds = 10;
