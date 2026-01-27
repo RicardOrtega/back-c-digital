@@ -16,10 +16,10 @@ export class ShopService {
     private readonly shopRepository: Repository<Shop>,
   ) {}
 
-  async create(datos: CreateShopDto): Promise<Shop> {
-    await this.checkEmail(datos.email);
+  async create(data: CreateShopDto): Promise<Shop> {
+    await this.checkEmail(data.email);
 
-    const newStore = this.shopRepository.create(datos);
+    const newStore = this.shopRepository.create(data);
     return this.shopRepository.save(newStore);
   }
 

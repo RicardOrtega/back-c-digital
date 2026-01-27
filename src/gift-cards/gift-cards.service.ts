@@ -3,7 +3,6 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { GiftCard } from "./entities/gift-cards.entity";
 import { Repository } from "typeorm/repository/Repository";
 import { GiftCardCatalogDto } from "./dto/gift-card-catalog.dto";
-import { create } from "domain";
 import { CreateGiftCardDto } from "./dto/create-gift-card.dto";
 import { UpdateGiftCardDto } from "./dto/update-gift-card.dto";
 
@@ -54,13 +53,13 @@ export class GiftCardsService {
     }
 
     async findById(id: string): Promise<GiftCard> {
-        const cardId = await this.giftCardRepository.findOne({ where: { id }, relations: ['shop'] });
+        const card = await this.giftCardRepository.findOne({ where: { id }, relations: ['shop'] });
 
-        if (!cardId) {
+        if (!card) {
             throw new NotFoundException(`Gift Card no encontrada o inexistente`);
         }
 
-        return cardId;
+        return card;
 
     }
 
