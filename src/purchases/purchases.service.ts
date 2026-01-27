@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Purchase, PurchaseStatus } from "./entities/purchase.entity";
 import { Repository } from "typeorm/repository/Repository";
@@ -43,7 +43,7 @@ async purchase(data:CreatePurchaseDto):Promise<PurchaseResponseDto> {
     
     await this.processPayment(savePurchase.id);
 
-    const code =await this.giftCardCodesService.generateCode(savePurchase.id);
+    const code = await this.giftCardCodesService.generateCode(savePurchase.id);
 
     await this.giftCardsService.updateCard(giftCard.id, {stock:giftCard.stock -1})
 
@@ -71,9 +71,25 @@ private async processPayment(purchaseId:string):Promise<void> {
 
 }
 
+async findByUser(userId:string):Promise<Purchase[]>{
+    return this.purchaseRepository.find({
+        where:{userid:userId},
+        relations:['giftCard','giftCard.shop'],
+        order:{purchasedAt:'DESC'},
+    });
+}
 
+async findbyId(id:string):Promise<Purchase>{
+    const purchase = await this.purchaseRepository.findOne({
+        where:{id},
+        relations:['giftCard','giftCard.shop','user'],
+    });
 
+    if(!purchase) {
+        throw new NotFoundException('purchase Does not exist');
+    }
+    return purchase
 
-
+}
     
 }
