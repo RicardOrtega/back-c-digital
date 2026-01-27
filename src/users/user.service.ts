@@ -18,7 +18,7 @@ export class UserService {
     async createUser(email: string, name: string, password: string): Promise<User> {
        const exists = await this.userRepository.findOne({where:{email}});
        if (exists) {
-        throw new Error('Este Correo ya se encuentra en uso');
+        throw new Error('email already in use');
        } 
         const hashedPassword = await this.hashPassword(password);
         const newUser = this.userRepository.create({
@@ -40,7 +40,7 @@ export class UserService {
      async login(email: string, password: string) {
         const user = await this.validateUser(email, password);
         if(!user) {
-            throw new Error ('Credenciales Invalidas');
+            throw new Error ('Invalid credentials');
         }       
 
         const payload   = { userId: user.id, email: user.email , name: user.name};

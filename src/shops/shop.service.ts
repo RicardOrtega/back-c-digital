@@ -33,7 +33,7 @@ export class ShopService {
     const foundStore = await this.shopRepository.findOne({ where: { id } });
 
     if (!foundStore) {
-      throw new NotFoundException(`Tienda no encontrada o inexistente`);
+      throw new NotFoundException(`store not found `);
     }
 
     return foundStore;
@@ -46,7 +46,7 @@ export class ShopService {
     });
 
     if (!storeUpdated) {
-      throw new NotFoundException(`La tienda no se encuentra o no existe`);
+      throw new NotFoundException(`store not found`);
     }
 
     if (data.email) {
@@ -64,7 +64,7 @@ export class ShopService {
     });
 
     if (foundShop && foundShop.id !== excludeID) {
-      throw new ConflictException('Tienda con este correo ya existente');
+      throw new ConflictException('store not found');
     }
   }
 }
