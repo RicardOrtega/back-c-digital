@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "./entities/users.entity";
 import { Repository } from "typeorm/repository/Repository";
-import * as brcypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 import { JwtService } from "@nestjs/jwt";
 
 @Injectable()
@@ -12,7 +12,7 @@ export class UserService {
 
     private async hashPassword(password: string): Promise<string> {
         const saltRounds = 10;
-        return brcypt.hash(password, saltRounds);
+        return bcrypt.hash(password, saltRounds);
     }
 
     async createUser(email: string, name: string, password: string): Promise<User> {
@@ -33,7 +33,7 @@ export class UserService {
         const user = await this.userRepository.findOne({where:{email}});
         if (!user) return null;
 
-        const isPasswordValid = await brcypt.compare(password, user.password);
+        const isPasswordValid = await bcrypt.compare(password, user.password);
         return isPasswordValid ? user : null;
     }
 
