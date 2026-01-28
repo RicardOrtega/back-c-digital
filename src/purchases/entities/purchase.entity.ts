@@ -1,6 +1,7 @@
-import { Entity,PrimaryGeneratedColumn,Column, CreateDateColumn,UpdateDateColumn,ManyToOne,JoinColumn,Index } from "typeorm";
+import { Entity,PrimaryGeneratedColumn,Column, CreateDateColumn,UpdateDateColumn,ManyToOne,JoinColumn,Index,OneToOne } from "typeorm";
 import { User } from "../../users/entities/users.entity";
 import { GiftCard } from "../../gift-cards/entities/gift-cards.entity";
+import { GiftCardCode } from "../../gift-cards-codes/entities/gift-card-codes.entity";
 
 export enum PurchaseStatus {
     PENDING = 'Pendiente',
@@ -31,6 +32,9 @@ export class Purchase{
     @ManyToOne(() => GiftCard)
     @JoinColumn({ name: 'gift_card_id' })
     giftCard: GiftCard;
+
+    @OneToOne(() => GiftCardCode, (code) => code.purchase)
+    giftCardCode: GiftCardCode;
 
     @Column({name:'purchase_amount',type:'decimal', precision:10, scale:2})
     purchaseAmount:string;

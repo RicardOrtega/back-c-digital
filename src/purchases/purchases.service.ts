@@ -82,7 +82,7 @@ async findByUser(userId:string):Promise<Purchase[]>{
 async findbyId(id:string):Promise<Purchase>{
     const purchase = await this.purchaseRepository.findOne({
         where:{id},
-        relations:['giftCard','giftCard.shop','user'],
+        relations:['giftCard','giftCard.shop','user','giftCardCode'],
     });
 
     if(!purchase) {

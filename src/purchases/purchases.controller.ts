@@ -32,11 +32,16 @@ export class PurchasesController {
         return this.purchasesService.findByUser(userId);
     }
 
-
-    @UseGuards(JwtAuthGuard)
-    @Get(':id')
-    async getPurchaseById(@Param('id') id: string) {
-        return this.purchasesService.findbyId(id);
+@UseGuards(JwtAuthGuard)
+@Get(':id')
+async getPurchaseById(@Param('id') id: string, @CurrentUser() user: any) {
+    const purchase = await this.purchasesService.findbyId(id);
+    
+    if(user.userId !== purchase.userid){
+        throw new UnauthorizedException('Unauthorized access to this purchase');
     }
+    
+    return purchase;
+}
 
 }
