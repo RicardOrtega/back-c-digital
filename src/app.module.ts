@@ -4,7 +4,6 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService,ConfigModule } from '@nestjs/config';
 import { UserModule } from './users/user.module';
-import { Shop } from './shops/entities/shop.entity';
 import { ShopModule } from './shops/shop.module';
 import { GiftCardsModule } from './gift-cards/gift-cards.module';
 import { PurchasesModule } from './purchases/purchases.module';
@@ -13,6 +12,7 @@ import { GiftCardCodesModule } from './gift-cards-codes/gift-card-codes.module';
 import { ThrottlerModule } from '@nestjs/throttler/dist/throttler.module';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard } from '@nestjs/throttler/dist/throttler.guard';
+import { CartModule } from './cart/cart.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -48,7 +48,8 @@ import { ThrottlerGuard } from '@nestjs/throttler/dist/throttler.guard';
     GiftCardsModule,
     PurchasesModule,
     GiftCardCodesModule,
-    RedemptionHistoryModule
+    RedemptionHistoryModule,
+    CartModule
   ],
   controllers: [AppController],
   providers: [{provide: APP_GUARD, useClass: ThrottlerGuard}, AppService],
