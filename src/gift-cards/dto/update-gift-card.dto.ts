@@ -18,7 +18,6 @@ export class UpdateGiftCardDto {
 
     @IsOptional()
     @IsString()
-    @Min(0)
     price?: string;
 
     @IsOptional()

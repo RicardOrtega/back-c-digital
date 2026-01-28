@@ -34,7 +34,7 @@ export class GiftCardCodesService {
 
 
         while (exists) {
-            const randomPart = randomBytes(4).toString('hex').toUpperCase();
+            const randomPart = randomBytes(8).toString('hex').toUpperCase();
             code = `${randomPart.slice(0, 4)}-${randomPart.slice(4, 8)}-${randomPart.slice(8, 12)}-${randomPart.slice(12, 16)} `;
 
             exists = await this.giftCardCodeRepository.exist({
