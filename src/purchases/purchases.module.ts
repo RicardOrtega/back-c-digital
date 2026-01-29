@@ -1,11 +1,11 @@
-import { Module } from "@nestjs/common";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { Purchase } from "./entities/purchase.entity";
-import { PurchasesController } from "./purchases.controller";
-import { PurchasesService } from "./purchases.service";
-import { GiftCardCodesModule } from "src/gift-cards-codes/gift-card-codes.module";
-import { GiftCardsModule } from "src/gift-cards/gift-cards.module";
-import { AuthModule } from "src/auth/auth.module";
+import { Module } from '@nestjs/common';
+import { PurchasesController } from './purchases.controller';
+import { PurchasesService } from './purchases.service';
+import { Purchase } from './entities/purchase.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { GiftCardCodesModule } from "../gift-cards-codes/gift-card-codes.module";  
+import { GiftCardsModule } from "../gift-cards/gift-cards.module";  
+import { AuthModule } from "../auth/auth.module";  
 
 @Module({
     imports: [

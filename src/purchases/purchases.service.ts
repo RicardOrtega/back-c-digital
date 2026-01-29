@@ -2,8 +2,8 @@ import { BadRequestException, Injectable, NotFoundException } from "@nestjs/comm
 import { InjectRepository } from "@nestjs/typeorm";
 import { Purchase, PurchaseStatus } from "./entities/purchase.entity";
 import { Repository } from "typeorm/repository/Repository";
-import { GiftCardsService } from "src/gift-cards/gift-cards.service";
-import { GiftCardCodesService } from "src/gift-cards-codes/gift-card-codes.service";
+import { GiftCardsService } from "../gift-cards/gift-cards.service";  
+import { GiftCardCodesService } from "../gift-cards-codes/gift-card-codes.service";  
 import { CreatePurchaseDto } from "./dto/create-purchase.dto";
 import { PurchaseResponseDto } from "./dto/purchase-response.dto";
 

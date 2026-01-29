@@ -3,7 +3,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { Shop } from "./entities/shop.entity";
 import { ShopService } from "./shop.service";
 import { ShopController } from "./shop.controller";
-import { AuthModule } from "src/auth/auth.module";
+import { AuthModule } from "../auth/auth.module";
 
 @Module({
     imports: [

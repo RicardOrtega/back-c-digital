@@ -4,7 +4,7 @@ import { GiftCardCatalogDto } from './dto/gift-card-catalog.dto';
 import { CreateGiftCardDto } from './dto/create-gift-card.dto';
 import { GiftCard } from './entities/gift-cards.entity';
 import { UpdateGiftCardDto } from './dto/update-gift-card.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 
 @Controller('gift-cards')
