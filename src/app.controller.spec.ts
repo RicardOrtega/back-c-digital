@@ -5,10 +5,20 @@ import { AppService } from './app.service';
 describe('AppController', () => {
   let appController: AppController;
 
+  const mockAppService = {
+    getHello: jest.fn().mockReturnValue('Hello World!'),
+    checkDatabaseConnection: jest.fn().mockResolvedValue({ ok: true }),
+  };
+
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [AppService],
+      providers: [
+        {
+          provide: AppService,
+          useValue: mockAppService,
+        },
+      ],
     }).compile();
 
     appController = app.get<AppController>(AppController);

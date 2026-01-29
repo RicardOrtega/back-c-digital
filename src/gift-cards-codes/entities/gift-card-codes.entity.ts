@@ -1,12 +1,11 @@
 import { Entity,PrimaryGeneratedColumn,Column,CreateDateColumn,ManyToOne,JoinColumn,Index, UpdateDateColumn } from "typeorm";
-import { Purchase } from "src/purchases/entities/purchase.entity";
-import { Shop } from "src/shops/entities/shop.entity";
-
+import { Purchase } from "../../purchases/entities/purchase.entity";  
+import { Shop } from "../../shops/entities/shop.entity"; 
 export enum GiftCardCodeStatus {
-active = 'activa',
-redeemed = 'canjeada',
-expired = 'expirada',
-cancelled = 'cancelada',
+    active = 'activa',
+    redeemed = 'canjeada',
+    expired = 'expirada',
+    cancelled = 'cancelada',
 }
 
 @Entity('gift_card_codes')

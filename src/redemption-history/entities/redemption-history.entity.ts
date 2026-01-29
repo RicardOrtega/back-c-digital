@@ -1,6 +1,6 @@
-import {Entity,PrimaryGeneratedColumn,Column,CreateDateColumn,ManyToOne,JoinColumn,Index} from "typeorm";
-import { GiftCardCode } from "src/gift-cards-codes/entities/gift-card-codes.entity";
-import {Shop} from "src/shops/entities/shop.entity";    
+import { Entity,PrimaryGeneratedColumn,Column,CreateDateColumn,ManyToOne,JoinColumn,Index } from "typeorm";
+import { GiftCardCode } from "../../gift-cards-codes/entities/gift-card-codes.entity";  
+import { Shop } from "../../shops/entities/shop.entity";
 
 @Entity('redemption_history')
 @Index(['giftcardcodeid','shopid'])

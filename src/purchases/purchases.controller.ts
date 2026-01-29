@@ -1,8 +1,9 @@
 import {Controller,Post,Body,Get,HttpCode,HttpStatus, Param, UseGuards, UnauthorizedException} from'@nestjs/common';
 import { PurchasesService } from './purchases.service';
 import { CreatePurchaseDto } from './dto/create-purchase.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';  
+import { CurrentUser } from '../auth/decorators/current-user.decorator';  
+
 
 @Controller('purchases')
 export class PurchasesController {
